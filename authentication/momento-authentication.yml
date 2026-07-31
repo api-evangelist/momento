@@ -1,0 +1,41 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.momentohq.com/platform/security/tokens
+docs: https://docs.momentohq.com/cache/develop/authentication/api-keys
+summary:
+  types: [apiKey]
+  api_key_in: [header, query]
+  oauth2_flows: []
+schemes:
+  - name: MomentoApiKey
+    type: apiKey
+    in: header
+    header: Authorization
+    description: >-
+      A Momento API key (auth token) is passed in the Authorization header on
+      HTTP requests and as gRPC `authorization` metadata. Keys are minted in the
+      Momento Console or via the CLI/SDK and encode the Momento endpoint they are
+      valid against.
+    sources: [https://docs.momentohq.com/cache/develop/api-reference/http-api, grpc/momento-cachepubsub.proto]
+  - name: MomentoTokenQuery
+    type: apiKey
+    in: query
+    query_param: token
+    description: >-
+      The HTTP API also accepts the API key as a `token` query-string parameter
+      (e.g. `?token=<key>`), primarily for browser and edge use.
+    sources: [https://docs.momentohq.com/cache/develop/api-reference/http-api]
+token_model:
+  - kind: api-key
+    description: Long-lived (or fixed-expiry) API key generated in the console for a cell/endpoint.
+  - kind: disposable-token
+    description: >-
+      Short-lived, fine-grained token minted via the Token service
+      (GenerateDisposableToken) with an explicit `valid_for_seconds` expiry and a
+      Permissions object scoping it to specific caches/topics and read/write roles.
+      Designed for client-side (browser/mobile) use so long-lived keys never leave the server.
+    source: grpc/momento-token.proto
+    permissions: grpc/momento-permissionmessages.proto
+  - kind: refreshable-api-token
+    description: API tokens can be programmatically refreshed via the Auth service (GenerateApiToken / RefreshApiToken).
+    source: grpc/momento-auth.proto

@@ -1,0 +1,62 @@
+generated: '2026-07-20'
+method: derived
+source:
+  - https://docs.momentohq.com/cache/develop/api-reference/http-api
+  - grpc/momento-cacheclient.proto
+  - grpc/momento-auth.proto
+docs: https://docs.momentohq.com/cache/develop/basics/error-handling
+envelope:
+  transport: gRPC status code + status message; SDKs surface a stable MomentoErrorCode enum on a MomentoError type.
+  http: standard HTTP status codes on the Cache HTTP API (see http_statuses below).
+  retryable_hint: >-
+    The protobufs annotate messages with a retry_semantic option (Retryable / NotRetryable);
+    idempotent reads and subscribes are retryable, publishes are not.
+http_statuses:
+  - status: 200
+    meaning: Cache hit — value returned in the response body.
+    operation: GET /cache/{cacheName}
+  - status: 204
+    meaning: Success with no body (Set / Delete completed).
+    operation: PUT|DELETE /cache/{cacheName}
+  - status: 404
+    meaning: Cache miss — key not present.
+    operation: GET /cache/{cacheName}
+  - status: 400
+    meaning: Invalid argument (bad key/TTL/parameters).
+  - status: 401
+    meaning: Missing or invalid Momento API key.
+  - status: 403
+    meaning: API key lacks permission for the requested cache/operation.
+  - status: 429
+    meaning: Rate / throughput / item-size limit exceeded for the cache.
+  - status: 5xx
+    meaning: Momento server or unavailability error; generally retryable with backoff.
+grpc_error_classes:
+  # Momento maps gRPC status codes to a stable MomentoErrorCode enum surfaced by every SDK.
+  - grpc_status: INVALID_ARGUMENT
+    meaning: A request argument was invalid (e.g. malformed key, invalid TTL).
+  - grpc_status: UNAUTHENTICATED
+    meaning: The API key is missing, invalid, or expired.
+  - grpc_status: PERMISSION_DENIED
+    meaning: The token/key is not permitted to perform the operation on the resource.
+  - grpc_status: NOT_FOUND
+    meaning: The requested cache (or resource) does not exist.
+  - grpc_status: ALREADY_EXISTS
+    meaning: The cache being created already exists.
+  - grpc_status: RESOURCE_EXHAUSTED
+    meaning: A cache request-rate, throughput, item-size, or topic limit was exceeded (LimitExceededError).
+  - grpc_status: FAILED_PRECONDITION
+    meaning: The operation was not applicable in the current state (e.g. a failed conditional SetIf).
+  - grpc_status: DEADLINE_EXCEEDED
+    meaning: The client-configured deadline elapsed before the operation completed (timeout).
+  - grpc_status: UNAVAILABLE
+    meaning: The service was temporarily unreachable; retry with backoff.
+  - grpc_status: CANCELLED
+    meaning: The operation was cancelled by the client.
+  - grpc_status: INTERNAL
+    meaning: An unexpected internal server error occurred.
+notes:
+  - Authoritative, human-friendly error names live in each SDK's MomentoErrorCode enum
+    (e.g. LimitExceededError, AuthenticationError, NotFoundError, TimeoutError,
+    BadRequestError, PermissionError, CacheAlreadyExistsError, ServerUnavailableError).
+    This catalog is derived from the confirmed gRPC/HTTP surface; the SDK enum is the registry.

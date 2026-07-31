@@ -1,0 +1,47 @@
+generated: '2026-07-20'
+method: derived
+source:
+  - grpc/momento-cacheclient.proto
+  - grpc/momento-controlclient.proto
+  - grpc/momento-httpcache.proto
+  - https://docs.momentohq.com/cache/develop/api-reference/http-api
+authentication:
+  style: api-key
+  transport: Authorization header (HTTP) / authorization gRPC metadata; also `?token=` query on HTTP API
+  see: authentication/momento-authentication.yml
+transport:
+  primary: gRPC (HTTP/2)
+  secondary: HTTP/1.1 JSON+binary API for cache get/set/delete
+  streaming: server-streaming gRPC for Topics Subscribe and cache GetBatch/SetBatch
+ttl:
+  required_on_write: true
+  units:
+    grpc: ttl_milliseconds
+    http: ttl_seconds
+  note: Every cache Set specifies a TTL; a cache also has a configurable default TTL.
+conditional_writes:
+  supported: true
+  operations: [SetIf, SetIfHash, SetIfNotExists (deprecated), Increment]
+  note: >-
+    Compare-and-set style conditional writes (present/absent/equal/not-equal, and hash-based
+    variants) provide optimistic concurrency control. There is no client-supplied
+    Idempotency-Key header; writes are addressed by key and are naturally idempotent by value.
+pagination:
+  style: cursor
+  scope: control-plane (ListCaches, ListSigningKeys)
+  request_param: next_token
+  response_field: next_token
+  note: Data-plane collection reads (ListFetch, DictionaryFetch, SetFetch, leaderboard ranges) are bounded per call (e.g. 8192 elements for leaderboards).
+error_semantics:
+  model: gRPC status codes mapped by SDKs to a stable MomentoErrorCode enum
+  http_status: HTTP API returns standard codes (200 hit, 204 no content, 404 miss, 4xx/5xx errors)
+  catalog: errors/momento-error-codes.yml
+rate_limiting:
+  model: per-cache request-rate, throughput, and item-size limits; per-cache topic publish-rate and subscription-count limits
+  signal: LimitExceededError (with a limit-exceeded message tag) surfaced to clients
+  source: grpc/momento-controlclient.proto (_CacheLimits, _TopicLimits)
+versioning:
+  scheme: single-version service; SDK/proto compatibility maintained additively
+  note: Deprecated RPCs (e.g. SetIfNotExists) are marked `option deprecated = true` in the protobufs rather than versioned out.
+request_tracing:
+  note: gRPC metadata carries client type/version headers; no documented public request-id echo header.

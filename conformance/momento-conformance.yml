@@ -1,0 +1,36 @@
+generated: '2026-07-20'
+method: derived
+source:
+  - grpc/momento-cacheclient.proto
+  - grpc/momento-httpcache.proto
+  - grpc/momento-controlclient.proto
+standards:
+  - id: grpc
+    conforms: true
+    evidence: Primary API is gRPC/protobuf (proto3) with published service definitions.
+  - id: protobuf-proto3
+    conforms: true
+    evidence: All service contracts are proto3 (syntax = "proto3").
+  - id: http-json
+    conforms: true
+    evidence: Region-scoped HTTP/1.1 API for cache get/set/delete (google.api.http annotations on HttpCache service).
+  - id: grpc-google-api-http
+    conforms: true
+    evidence: HttpCache service uses google.api.http and google.api.HttpBody annotations.
+  - id: redis-compatibility
+    conforms: true
+    evidence: Documented drop-in Redis replacement / Redis-compatible client mode.
+  - id: oauth2
+    conforms: false
+    evidence: Authentication is Momento API key / disposable token, not OAuth2.
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors surface as gRPC status codes / SDK MomentoErrorCode enum, not application/problem+json.
+  - id: cursor-pagination
+    conforms: true
+    evidence: Control-plane list operations use next_token cursor pagination.
+  - id: webhooks-signed
+    conforms: true
+    evidence: Webhooks are delivered with a rotatable signing secret for payload verification.

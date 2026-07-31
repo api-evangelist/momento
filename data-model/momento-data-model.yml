@@ -1,0 +1,73 @@
+generated: '2026-07-20'
+method: derived
+source:
+  - grpc/momento-controlclient.proto
+  - grpc/momento-cacheclient.proto
+  - grpc/momento-cachepubsub.proto
+  - grpc/momento-leaderboard.proto
+  - grpc/momento-webhook.proto
+  - grpc/momento-token.proto
+entities:
+  - name: Cache
+    description: A named namespace holding items, collections, and topics; the primary control-plane resource.
+    keyed_by: cache_name
+    attributes: [cache_limits, topic_limits]
+  - name: Item
+    description: A single key/value entry in a cache with a TTL. Values are binary or string.
+    keyed_by: cache_key
+    attributes: [value, ttl]
+  - name: Collection
+    description: Higher-order data structures stored under a key within a cache — Dictionary, List, Set, and SortedSet.
+    variants: [Dictionary, List, Set, SortedSet]
+  - name: Topic
+    description: A best-effort multicast pub/sub channel scoped to a cache.
+    keyed_by: topic (name)
+  - name: TopicMessage
+    description: A published value delivered to subscribers, ordered by topic_sequence_number.
+    attributes: [topic_sequence_number, value, publisher_id, sequence_page]
+  - name: Webhook
+    description: A subscription that forwards Topic messages to an external HTTP destination (e.g. Lambda, Slack, EventBridge).
+    keyed_by: [cache_name, webhook name]
+    attributes: [destination, secret]
+  - name: Leaderboard
+    description: A durable sorted set of elements (uint64 id -> float score), up to 8192 elements per batch call.
+    attributes: [element.id, element.score]
+  - name: SigningKey
+    description: A key used to sign presigned URLs, with an expiry.
+    keyed_by: key_id
+  - name: DisposableToken
+    description: A short-lived, permission-scoped API key minted for client-side use.
+    attributes: [api_key, endpoint, valid_until, permissions]
+  - name: Index
+    description: A vector index (control plane) with dimensions and a similarity metric.
+    keyed_by: index_name
+    attributes: [num_dimensions, similarity_metric]
+relationships:
+  - from: Item
+    to: Cache
+    type: belongs_to
+    via: cache_name
+  - from: Collection
+    to: Cache
+    type: belongs_to
+    via: cache_name
+  - from: Topic
+    to: Cache
+    type: belongs_to
+    via: cache_name
+  - from: TopicMessage
+    to: Topic
+    type: belongs_to
+    via: topic
+  - from: Cache
+    to: Topic
+    type: has_many
+    via: cache_name
+  - from: Webhook
+    to: Topic
+    type: belongs_to
+    via: [cache_name, topic_name]
+  - from: DisposableToken
+    to: Cache
+    type: scoped_to
+    via: permissions

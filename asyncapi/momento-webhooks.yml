@@ -1,0 +1,36 @@
+generated: '2026-07-20'
+method: derived
+source:
+  - grpc/momento-webhook.proto
+  - grpc/momento-cachepubsub.proto
+  - https://docs.momentohq.com/topics/develop/webhooks
+spec_type: Webhooks
+summary: >-
+  Momento's event surface is Momento Topics — a serverless, best-effort multicast
+  publish/subscribe event bus scoped to a cache. Webhooks let an external HTTPS
+  destination (AWS Lambda, EventBridge, Slack, Discord, etc.) subscribe to the
+  messages published on a Topic, so events flow out of Momento without a persistent
+  gRPC subscriber.
+event_bus:
+  name: Momento Topics
+  model: best-effort multicast pub/sub, per-topic ordering by topic_sequence_number
+  delivery: server-streaming gRPC (Subscribe) or webhook fan-out
+  message_kinds: [item, discontinuity, heartbeat]
+  value_types: [text, binary]
+webhooks:
+  management:
+    operations:
+      - PutWebhook
+      - DeleteWebhook
+      - ListWebhooks
+      - GetWebhookSecret
+      - RotateWebhookSecret
+    source: grpc/momento-webhook.proto
+  binding:
+    scoped_to: [cache_name, topic_name]
+    destination: external HTTPS endpoint (commonly AWS Lambda; also Slack, Discord, EventBridge)
+  security:
+    signing: Each webhook has a rotatable secret used to sign delivered payloads so
+      the receiver can verify authenticity (GetWebhookSecret / RotateWebhookSecret).
+  payload:
+    body: The published Topic value (text or binary) plus topic/sequence metadata.

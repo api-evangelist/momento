@@ -1,8 +1,14 @@
 aid: momento
 name: Momento
-description: 'Momento is a company surfaced as a portfolio company of bain-capital-ventures and added
-  to the API Evangelist network as a stub for enrichment. Sector: ai-infrastructure. This profile is a
-  lead awaiting the enrichment pipeline.'
+description: 'Momento is a serverless data platform that provides low-latency, pay-as-you-go
+  infrastructure without servers to provision, tune, or scale. Its core services are Momento
+  Cache (an ephemeral serverless cache and drop-in Redis replacement), Momento Topics (a
+  serverless publish/subscribe event bus), and Momento Leaderboards (massive, durable sorted
+  sets). The platform is accessed over gRPC and a region-scoped HTTP API, with official SDKs
+  for 15+ languages spanning browsers, mobile (iOS/Android/Flutter/Unity/Unreal), and 10+
+  server-side runtimes, plus a CLI and a Terraform provider. Authentication uses Momento API
+  keys and short-lived disposable tokens with fine-grained permissions. Momento is backed by
+  Bain Capital Ventures.'
 url: https://raw.githubusercontent.com/api-evangelist/momento/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,13 +16,52 @@ x-backed-by:
 - bain-capital-ventures
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://github.com/momentohq.png
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Ai Infrastructure
-apis: []
+- Caching
+- Serverless
+- Cache
+- Pub/Sub
+- Messaging
+- Event Bus
+- Leaderboards
+- Real Time
+- gRPC
+- Developer Tools
+apis:
+- name: Momento Cache HTTP API
+  description: 'Region-scoped HTTP API for reading, writing, and deleting cache items in a
+    Momento cache without a gRPC client. Supports GET, PUT (set with TTL), and DELETE against
+    a named cache, authenticated with a Momento API key passed via the Authorization header
+    or a query-string token.'
+  humanURL: https://docs.momentohq.com/cache/develop/api-reference/http-api
+  baseURL: https://api.cache.cell-1-ap-south-1-1.prod.a.momentohq.com
+  tags:
+  - Cache
+  - HTTP
+  - Serverless
+  properties:
+  - type: APIReference
+    url: https://docs.momentohq.com/cache/develop/api-reference/http-api
+  - type: Documentation
+    url: https://docs.momentohq.com/cache/develop/api-reference
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +70,60 @@ maintainers:
 common:
 - type: Website
   url: https://www.gomomento.com/
+- type: DeveloperPortal
+  url: https://docs.momentohq.com/
+- type: Documentation
+  url: https://docs.momentohq.com/
+- type: APIReference
+  url: https://docs.momentohq.com/cache/develop/api-reference
+- type: GettingStarted
+  url: https://docs.momentohq.com/getting-started
+- type: SDKs
+  url: packages/momento-packages.yml
+- type: Packages
+  url: packages/momento-packages.yml
+- type: CLI
+  url: cli/momento-cli.yml
+- type: Protobuf
+  url: grpc/momento-grpc.yml
+- type: Authentication
+  url: authentication/momento-authentication.yml
+- type: Conventions
+  url: conventions/momento-conventions.yml
+- type: ErrorCatalog
+  url: errors/momento-error-codes.yml
+- type: DataModel
+  url: data-model/momento-data-model.yml
+- type: Webhooks
+  url: asyncapi/momento-webhooks.yml
+- type: Lifecycle
+  url: lifecycle/momento-lifecycle.yml
+- type: Conformance
+  url: conformance/momento-conformance.yml
+- type: MCPServer
+  url: mcp/momento-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/momento-llms.txt
+- type: DomainSecurity
+  url: security/momento-domain-security.yml
+- type: GitHubOrganization
+  url: https://github.com/momentohq
+- type: Blog
+  url: https://www.gomomento.com/blog
+- type: Pricing
+  url: https://www.gomomento.com/pricing/
+- type: SignUp
+  url: https://console.gomomento.com/
+- type: TermsOfService
+  url: https://www.gomomento.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://www.gomomento.com/privacy-policy/
+- type: Postman
+  url: https://www.postman.com/gomomento
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 27
+  pass: local-v1

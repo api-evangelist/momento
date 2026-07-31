@@ -1,0 +1,116 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.momentohq.com/platform/sdks
+packages:
+  # Server-side SDKs
+  - language: javascript
+    registry: npm
+    name: "@gomomento/sdk"
+    url: https://www.npmjs.com/package/@gomomento/sdk
+    install: npm install @gomomento/sdk
+    repo: https://github.com/momentohq/client-sdk-javascript
+    official: true
+  - language: python
+    registry: pypi
+    name: momento
+    url: https://pypi.org/project/momento/
+    install: pip install momento
+    repo: https://github.com/momentohq/client-sdk-python
+    official: true
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/momentohq/client-sdk-go
+    url: https://pkg.go.dev/github.com/momentohq/client-sdk-go
+    install: go get github.com/momentohq/client-sdk-go
+    repo: https://github.com/momentohq/client-sdk-go
+    official: true
+  - language: java
+    registry: maven
+    name: software.momento.java/sdk
+    url: https://central.sonatype.com/artifact/software.momento.java/sdk
+    repo: https://github.com/momentohq/client-sdk-java
+    official: true
+  - language: dotnet
+    registry: nuget
+    name: Momento.Sdk
+    url: https://www.nuget.org/packages/Momento.Sdk
+    install: dotnet add package Momento.Sdk
+    repo: https://github.com/momentohq/client-sdk-dotnet
+    official: true
+  - language: php
+    registry: packagist
+    name: momentohq/client-sdk-php
+    url: https://packagist.org/packages/momentohq/client-sdk-php
+    install: composer require momentohq/client-sdk-php
+    repo: https://github.com/momentohq/client-sdk-php
+    official: true
+  - language: rust
+    registry: crates.io
+    name: momento
+    url: https://crates.io/crates/momento
+    install: cargo add momento
+    repo: https://github.com/momentohq/client-sdk-rust
+    official: true
+  - language: ruby
+    registry: rubygems
+    name: momento
+    url: https://rubygems.org/gems/momento
+    install: gem install momento
+    official: true
+  - language: elixir
+    registry: hex
+    name: gomomento
+    url: https://hex.pm/packages/gomomento
+    install: "{:gomomento, \"~> 0.0\"}"
+    official: true
+  - language: kotlin
+    registry: maven
+    name: software.momento.kotlin/sdk
+    url: https://central.sonatype.com/artifact/software.momento.kotlin/sdk
+    official: true
+  # Client-side SDKs
+  - language: javascript
+    registry: npm
+    name: "@gomomento/sdk-web"
+    url: https://www.npmjs.com/package/@gomomento/sdk-web
+    install: npm install @gomomento/sdk-web
+    repo: https://github.com/momentohq/client-sdk-javascript
+    official: true
+    surface: browser
+  - language: swift
+    registry: github
+    name: client-sdk-swift
+    url: https://github.com/momentohq/client-sdk-swift
+    official: true
+    surface: ios
+  - language: dart
+    registry: pub.dev
+    name: momento
+    url: https://pub.dev/packages/momento
+    official: true
+    surface: flutter
+  - language: csharp
+    registry: github
+    name: client-sdk-unity
+    url: https://github.com/momentohq/client-sdk-unity
+    official: true
+    surface: unity
+  - language: cpp
+    registry: github
+    name: client-sdk-unreal
+    url: https://github.com/momentohq/client-sdk-unreal
+    official: true
+    surface: unreal
+  # Tooling
+  - language: rust
+    registry: github
+    name: momento-cli
+    url: https://github.com/momentohq/momento-cli
+    official: true
+    kind: cli
+  - language: go
+    registry: github
+    name: terraform-provider-momento
+    url: https://github.com/momentohq/terraform-provider-momento
+    official: true
+    kind: terraform-provider

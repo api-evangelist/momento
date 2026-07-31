@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: probed
+note: >-
+  No genuine /.well-known/ discovery documents were served. The Momento website and
+  docs return 404 for well-known paths; the console (console.gomomento.com) is a SPA
+  that returns its HTML shell (HTTP 200) for every path, so those 200s are not real
+  documents and were discarded. Absence is valid recorded data.
+hosts:
+  - host: https://www.gomomento.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+  - host: https://docs.momentohq.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+  - host: https://console.gomomento.com
+    documents:
+      - {path: /.well-known/security.txt, status: 200, note: SPA HTML shell, not a real security.txt — discarded}
+      - {path: /.well-known/openid-configuration, status: 200, note: SPA HTML shell, not valid JSON — discarded}
+documents: []

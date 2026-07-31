@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/momentohq/client-protos/tree/main/proto
+description: >-
+  Official Momento protobuf (proto3) service definitions, saved verbatim from the
+  momentohq/client-protos repository. These are the canonical API contracts behind
+  every Momento SDK.
+files:
+  - file: grpc/momento-cacheclient.proto
+    package: cache_client
+    service: Scs
+    domain: Cache data plane (get/set/delete, collections — dictionaries, lists, sets, sorted sets)
+  - file: grpc/momento-cachepubsub.proto
+    package: cache_client.pubsub
+    service: Pubsub
+    domain: Momento Topics publish/subscribe
+  - file: grpc/momento-httpcache.proto
+    package: cache_client
+    service: HttpCache
+    domain: HTTP get/set surface for the cache (google.api.http annotated)
+  - file: grpc/momento-controlclient.proto
+    package: control_client
+    service: ScsControl
+    domain: Control plane — caches, signing keys, vector indexes
+  - file: grpc/momento-leaderboard.proto
+    package: leaderboard
+    service: Leaderboard
+    domain: Leaderboards (durable sorted sets)
+  - file: grpc/momento-webhook.proto
+    package: webhook
+    service: Webhook
+    domain: Webhooks that forward Topic messages to external destinations
+  - file: grpc/momento-auth.proto
+    package: auth
+    service: Auth
+    domain: Login and API token generation/refresh
+  - file: grpc/momento-token.proto
+    package: token
+    service: Token
+    domain: Disposable (short-lived, scoped) token generation
+  - file: grpc/momento-common.proto
+    package: common
+    domain: Shared message/option definitions (retry semantics, _Empty)

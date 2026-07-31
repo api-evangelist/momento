@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/momentohq/momento-cli
+name: Momento CLI
+description: Official command-line interface for Momento Serverless Cache, written in Rust.
+repo: https://github.com/momentohq/momento-cli
+docs: https://docs.momentohq.com/develop/cli
+install:
+  - method: homebrew
+    command: brew install momentohq/tap/momento-cli
+  - method: cargo
+    command: cargo install momento-cli
+  - method: github-release
+    url: https://github.com/momentohq/momento-cli/releases
+command_groups:
+  - group: configure
+    description: Configure the CLI with a Momento API key and default profile / region.
+    commands: [configure, "configure profiles"]
+  - group: account
+    description: Sign up and manage account-level credentials.
+    commands: [account signup]
+  - group: cache
+    description: Create, list, delete, and flush caches, and get/set/delete items.
+    commands: [cache create, cache delete, cache list, cache flush, cache set, cache get, cache delete-item]
+  - group: topic
+    description: Publish to and subscribe from Momento Topics.
+    commands: [topic publish, topic subscribe]
+  - group: signingkey
+    description: Create, revoke, and list signing keys.
+    commands: [signingkey create, signingkey revoke, signingkey list]
+notes:
+  - The CLI reads its API key from the configured profile (~/.momento/config) or the MOMENTO_API_KEY environment variable.

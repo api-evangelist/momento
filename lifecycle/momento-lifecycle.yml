@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: derived
+source:
+  - grpc/momento-cacheclient.proto
+  - https://docs.momentohq.com/
+versioning:
+  scheme: single-version service
+  note: >-
+    Momento exposes a single, continuously-deployed service version. Protobuf
+    definitions evolve additively; retired RPCs are marked deprecated in-place
+    rather than removed behind a version path.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published RFC 8594 Sunset/Deprecation header policy was found.
+deprecated_operations:
+  - grpc/momento-cacheclient.proto#SetIfNotExists   # superseded by SetIf (Absent)
+sla:
+  url: null
+status_page: null   # status.gomomento.com not confirmed reachable at enrichment time
