@@ -2,48 +2,53 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source:
-  - grpc/momento-cacheclient.proto
-  - grpc/momento-cachepubsub.proto
-  - grpc/momento-controlclient.proto
-  - grpc/momento-leaderboard.proto
-note: >-
-  No official hosted Momento MCP server was found at enrichment time. The tools
-  below are a CANDIDATE surface derived from Momento's core gRPC operations to
-  seed a future MCP server; they are not a published Momento product.
+- grpc/momento-cacheclient.proto
+- grpc/momento-cachepubsub.proto
+- grpc/momento-controlclient.proto
+- grpc/momento-leaderboard.proto
+note: No official hosted Momento MCP server was found at enrichment time. The tools below are a CANDIDATE
+  surface derived from Momento's core gRPC operations to seed a future MCP server; they are not a published
+  Momento product.
 server:
   name: momento
   transport: stdio
 tools:
-  - name: create_cache
-    description: Create a new Momento cache.
-    source_operation: grpc/momento-controlclient.proto#CreateCache
-  - name: list_caches
-    description: List caches in the account.
-    source_operation: grpc/momento-controlclient.proto#ListCaches
-  - name: delete_cache
-    description: Delete a cache.
-    source_operation: grpc/momento-controlclient.proto#DeleteCache
-  - name: cache_set
-    description: Set a key/value item in a cache with a TTL.
-    source_operation: grpc/momento-cacheclient.proto#Set
-  - name: cache_get
-    description: Get the value for a key from a cache.
-    source_operation: grpc/momento-cacheclient.proto#Get
-  - name: cache_delete
-    description: Delete a key from a cache.
-    source_operation: grpc/momento-cacheclient.proto#Delete
-  - name: cache_increment
-    description: Atomically increment a numeric value.
-    source_operation: grpc/momento-cacheclient.proto#Increment
-  - name: topic_publish
-    description: Publish a message to a topic.
-    source_operation: grpc/momento-cachepubsub.proto#Publish
-  - name: topic_subscribe
-    description: Subscribe to a topic's message stream.
-    source_operation: grpc/momento-cachepubsub.proto#Subscribe
-  - name: leaderboard_upsert
-    description: Insert or update elements in a leaderboard.
-    source_operation: grpc/momento-leaderboard.proto#UpsertElements
-  - name: leaderboard_fetch_by_rank
-    description: Fetch a range of leaderboard elements by rank.
-    source_operation: grpc/momento-leaderboard.proto#GetByRank
+- name: create_cache
+  description: Create a new Momento cache.
+  source_operation: grpc/momento-controlclient.proto#CreateCache
+- name: list_caches
+  description: List caches in the account.
+  source_operation: grpc/momento-controlclient.proto#ListCaches
+- name: delete_cache
+  description: Delete a cache.
+  source_operation: grpc/momento-controlclient.proto#DeleteCache
+- name: cache_set
+  description: Set a key/value item in a cache with a TTL.
+  source_operation: grpc/momento-cacheclient.proto#Set
+- name: cache_get
+  description: Get the value for a key from a cache.
+  source_operation: grpc/momento-cacheclient.proto#Get
+- name: cache_delete
+  description: Delete a key from a cache.
+  source_operation: grpc/momento-cacheclient.proto#Delete
+- name: cache_increment
+  description: Atomically increment a numeric value.
+  source_operation: grpc/momento-cacheclient.proto#Increment
+- name: topic_publish
+  description: Publish a message to a topic.
+  source_operation: grpc/momento-cachepubsub.proto#Publish
+- name: topic_subscribe
+  description: Subscribe to a topic's message stream.
+  source_operation: grpc/momento-cachepubsub.proto#Subscribe
+- name: leaderboard_upsert
+  description: Insert or update elements in a leaderboard.
+  source_operation: grpc/momento-leaderboard.proto#UpsertElements
+- name: leaderboard_fetch_by_rank
+  description: Fetch a range of leaderboard elements by rank.
+  source_operation: grpc/momento-leaderboard.proto#GetByRank
+deployment:
+  mode: none
+  verified: derived
+  tools: 11
+  checked: '2026-08-12'
+  source: catalog MCP census
