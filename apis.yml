@@ -45,11 +45,11 @@ created: '2026-07-17'
 modified: '2026-07-20'
 tags:
 - Company
-- AI Infrastructure
+- Ai Infrastructure
 - Caching
 - Serverless
 - Cache
-- Pub-Sub
+- Pub/Sub
 - Messaging
 - Event Bus
 - Leaderboards
