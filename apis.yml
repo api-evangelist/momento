@@ -43,7 +43,7 @@ accessModel:
 image: https://github.com/momentohq.png
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-10-06'
 tags:
 - Company
 - AI Infrastructure
@@ -93,6 +93,10 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- url: https://www.gomomento.com/blog/
+  type: Blog
+- url: https://www.gomomento.com/feed
+  type: BlogRSS
 - type: Website
   url: https://www.gomomento.com/
 - type: DeveloperPortal
