@@ -64,6 +64,107 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Momento is a company surfaced as a portfolio company of bain-capital-ventures and added to the API Evangelist network as a stub for enrichment. Sector: ai-infrastructure. This profile is a lead awaiting the enrichment pipeline.
+Momento is a serverless data platform that provides low-latency, pay-as-you-go infrastructure without servers to provision, tune, or scale. Its core services are Momento Cache (an ephemeral serverless cache and drop-in Redis replacement), Momento Topics (a serverless publish/subscribe event bus), and Momento Leaderboards (massive, durable sorted sets). The platform is accessed over gRPC and a region-scoped HTTP API, with official SDKs for 15+ languages spanning browsers, mobile (iOS/Android/Flutter/Unity/Unreal), and 10+ server-side runtimes, plus a CLI and a Terraform provider. Authentication uses Momento API keys and short-lived disposable tokens with fine-grained permissions. Momento is backed by Bain Capital Ventures.
 
-Backed by: bain-capital-ventures — https://www.gomomento.com/
+**Areas:** Company · AI Infrastructure · Caching · Serverless · Cache · Pub/Sub · Messaging · Event Bus · Leaderboards · Real-Time · gRPC · Developer Tools
+
+## Momento on APIs.io
+
+Everything profiled for Momento is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/momento/](https://apis.io/providers/momento/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Momento Cache HTTP API](https://apis.io/apis/momento/momento-cache-http-api/) — Region-scoped HTTP API for reading, writing, and deleting cache items in a Momento cache without a gRPC client. Supports GET, PUT (set with TTL), and DELETE…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Momento Webhooks](https://apis.io/asyncapis/momento/momento-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [momento](https://apis.io/servers/momento/momento/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Momento Authentication](https://apis.io/security/momento/momento-authentication/)
+- [Momento Domain Security](https://apis.io/security/momento/momento-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.gomomento.com/)
+- [Documentation](https://docs.momentohq.com/)
+- [Getting started](https://docs.momentohq.com/getting-started)
+- [API reference](https://docs.momentohq.com/cache/develop/api-reference)
+- [Pricing](https://www.gomomento.com/pricing/)
+- [Sign up](https://console.gomomento.com/)
+- [Blog](https://www.gomomento.com/blog/)
+- [Terms of service](https://www.gomomento.com/terms-of-service/)
+- [Privacy policy](https://www.gomomento.com/privacy-policy/)
+- [GitHub](https://github.com/momentohq)
+
+## API Evangelist rating
+
+**Kin Score 40.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 39.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 70.8 |
+| Access clarity | 31.6 |
+
+**Agent readiness 18.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/momento/](https://apis.io/providers/momento/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Momento: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/momento/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
